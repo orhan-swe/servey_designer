@@ -9,43 +9,33 @@ import "react-table/react-table.css";
 
 const columns = [
   {
-    Header: "Name",
-    columns: [
-      {
-        Header: "First Name",
-        accessor: "firstName"
-      },
-      {
-        Header: "Last Name",
-        id: "lastName",
-        accessor: d => d.lastName
-      }
-    ]
+    Header: "Category",
+    accessor: "category"
   },
   {
-    Header: "Info",
-    columns: [
-      {
-        Header: "Age",
-        accessor: "age",
-        aggregate: vals => _.round(_.mean(vals)),
-        Aggregated: row => {
-          return (
-            <span>
-              {row.value} (avg)
+    Header: "Question",
+    accessor: "question"
+    // accessor: d => d.question
+  },
+  {
+    Header: "Options",
+    accessor: "age",
+    aggregate: vals => _.round(_.mean(vals)),
+    Aggregated: row => {
+      return (
+        <span>
+          {row.value} (avg)
             </span>
-          );
-        },
-        filterMethod: (filter, row) =>
-          filter.value === `${row[filter.id]} (avg)`
-      },
-      {
-        Header: "Visits",
-        accessor: "visits",
-        aggregate: vals => _.sum(vals),
-        filterable: false
-      }
-    ]
+      );
+    },
+    filterMethod: (filter, row) =>
+      filter.value === `${row[filter.id]} (avg)`
+  },
+  {
+    Header: "Follow up question",
+    accessor: "visits",
+    aggregate: vals => _.sum(vals),
+    filterable: false
   }
 ];
 
@@ -59,33 +49,18 @@ class Table2 extends React.Component {
   render() {
     const { data } = this.state;
     return (
-      <div style={{padding: '50px'}}>
+      <div style={{ padding: '50px' }}>
         <ReactTable
           data={data}
           columns={columns}
           defaultPageSize={10}
-          pivotBy={["firstName", "lastName"]}
-          filterable
+          // pivotBy={["category", "question"]}
           SubComponent={row => {
             return (
               <div style={{ padding: "20px" }}>
                 <em>
-                  You can put any component you want here, even another React
-                  Table!
+                  You can put any component
                 </em>
-                <br />
-                <br />
-                {/* <ReactTable
-                  data={data}
-                  columns={columns}
-                  defaultPageSize={3}
-                  showPagination={false}
-                  SubComponent={row => {
-                    return (
-                      <div style={{ padding: "20px" }}>Sub Component!</div>
-                    );
-                  }}
-                /> */}
               </div>
             );
           }}

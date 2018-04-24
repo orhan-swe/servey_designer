@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import 'react-table/react-table.css';
 import Table1 from './Table1';
 import Table2 from './Table2';
+import TreeTableComponent from './TreeTable/TreeTableComponent';
 
 class AllTables extends React.Component {
   constructor() {
@@ -16,8 +17,9 @@ class AllTables extends React.Component {
   render() {
     return (
       <div >
-        <Table1 />
-        <Table2 />
+        {/* <Table1 />
+        <Table2 /> */}
+        <TreeTableComponent />
       </div>
     );
   }
