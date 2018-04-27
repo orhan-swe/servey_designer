@@ -16,8 +16,8 @@ import testData from "./test_data";
 // the HOC provides the configuration for the TreeTable
 const TreeTable = treeTableHOC(ReactTable);
 
-function getTdProps(state, ri, ci) {
-  console.log({ state, ri, ci });
+function getTdProps(category, ri, ci) {
+  console.log({ category, ri, ci });
   return {};
 }
 
@@ -27,33 +27,25 @@ function getTdProps(state, ri, ci) {
 class TreeTableComponent extends React.Component {
   constructor() {
     super();
-    this.state = {
+    this.category = {
       // data: makeData()
       data: testData
     };
   }
   render() {
-    const { data } = this.state;
+    const { data } = this.category;
     // now use the new TreeTable component
     return (
       <div style={{padding: '50px'}}>
         <TreeTable
-          filterable
-          defaultFilterMethod={(filter, row, column) => {
-            const id = filter.pivotId || filter.id;
-            return row[id] !== undefined
-              ? String(row[id])
-                  .toLowerCase()
-                  .includes(filter.value.toLowerCase())
-              : true;
-          }}
           data={data}
-          pivotBy={["state", "post", "city"]}
+          // pivotBy={["category", "post", "city"]}
+          pivotBy={["category"]}
           columns={[
             // we only require the accessor so TreeTable
             // can handle the pivot automatically
             {
-              accessor: "state"
+              accessor: "category"
             },
             {
               accessor: "post"
@@ -91,36 +83,37 @@ class TreeTableComponent extends React.Component {
           defaultPageSize={10}
           SubComponent={row => {
             // a SubComponent just for the final detail
-            const columns = [
-              {
-                Header: "Property",
-                accessor: "property",
-                width: 200,
-                Cell: ci => {
-                  return `${ci.value}:`;
-                },
-                style: {
-                  backgroundColor: "#DDD",
-                  textAlign: "right",
-                  fontWeight: "bold"
-                }
-              },
-              { Header: "Value", accessor: "value" }
-            ];
-            const rowData = Object.keys(row.original).map(key => {
-              return {
-                property: key,
-                value: row.original[key].toString()
-              };
-            });
+            // const columns = [
+            //   {
+            //     Header: "Property",
+            //     accessor: "property",
+            //     width: 200,
+            //     Cell: ci => {
+            //       return `${ci.value}:`;
+            //     },
+            //     style: {
+            //       backgroundColor: "#DDD",
+            //       textAlign: "right",
+            //       fontWeight: "bold"
+            //     }
+            //   },
+            //   { Header: "Value", accessor: "value" }
+            // ];
+            // const rowData = Object.keys(row.original).map(key => {
+            //   return {
+            //     property: key,
+            //     value: row.original[key].toString()
+            //   };
+            // });
             return (
               <div style={{ padding: "10px" }}>
-                <ReactTable
+                <em> hello </em>
+                {/* <ReactTable
                   data={rowData}
                   columns={columns}
                   pageSize={rowData.length}
                   showPagination={false}
-                />
+                /> */}
               </div>
             );
           }}
