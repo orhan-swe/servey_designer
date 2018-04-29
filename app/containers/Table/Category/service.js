@@ -1,6 +1,10 @@
 
-import testData from "./test_data2";
+import testData, {followUpQ} from "./test_data3";
 
+const getFollowUpQ = ()=> {
+  let k = Math.round(Math.random() * (followUpQ.length-1));
+  return followUpQ[k].questionText;
+}
 export const getAnswerOption = () => {
   let rand = Math.random();
   if (rand < 0.2) {
@@ -32,7 +36,7 @@ export const getAnswerOptionsArray = () => {
     answerOptions[k] = {};
     answerOptions[k].answer = getAnswerOption();
     if (Math.random() < 0.4) {
-      answerOptions[k].followUpQuestion = "Hur ofta känner du dig klartänkt?";
+      answerOptions[k].followUpQuestion = getFollowUpQ();
     }
   }
   return answerOptions;

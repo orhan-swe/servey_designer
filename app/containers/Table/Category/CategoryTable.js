@@ -46,7 +46,7 @@ class CateogryTable extends React.Component {
     const { data } = this.state;
     // now use the new TreeTable component
     return (
-      <div style={{ padding: '100px' }}>
+      <div style={{ padding: '70px' }}>
         <ReactTable
           data={data}
           columns={[
