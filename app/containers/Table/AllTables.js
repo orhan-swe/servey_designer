@@ -18,7 +18,7 @@ class AllTables extends React.Component {
   render() {
     return (
       <div >
-        <h3 style={{ "padding-left": "100px",  "padding-top": "30px"  }} > Lytics servey visualazor </h3>
+        <h3 style={{ "padding-left": "100px",  "padding-top": "30px"  }} > Lytics survey designer </h3>
         {/* <Table1 />
         <Table2 /> */}
         {/* <TreeTableComponent />/> */}
